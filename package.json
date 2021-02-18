@@ -1,0 +1,20 @@
+{
+  "name": "abe-stats",
+  "version": "1.0.0",
+  "description": "stats plugin for abejs",
+  "author": "Christopher Fouquier",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdFabConnect/abe-stats.git"
+  },
+  "keywords": [
+    "stats",
+    "abe",
+    "plugin"
+  ],
+  "bugs": {
+    "url": "https://github.com/AdFabConnect/abe-stats/issues"
+  },
+  "homepage": "https://github.com/AdFabConnect/abe-stats#readme"
+}

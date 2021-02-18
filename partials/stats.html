@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stats - Abe</title>
+    <link rel="stylesheet" href="/abejs/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/abejs/style-user.css">
+    <style type="text/css">
+      .toggle {
+        text-align: center;
+        display: block;
+      }
+      .links {
+        display: none;
+      }
+      .show {
+        display: block;
+      }
+    </style>
+</head>
+<body>
+  <div class="user-list row col-xs-offset-1 col-xs-10">
+    <ol class="breadcrumb">
+      <li><a href="/abe/">Home</a></li>
+      <li class="active">Stats</li>
+    </ol>
+
+    <div class="">
+      <form class="form-inline pull-right" action="/abe/plugin/abe-stats/stats-csv" method="post">
+        <div class="form-group">
+          <label for="startedAt">Started at</label>
+          <input type="date" class="form-control" id="startedAt" name="startedAt" />
+        </div>
+        <div class="form-group">
+          <label for="endedAt">Ended at</label>
+          <input type="date" class="form-control" id="endedAt" name="endedAt" />
+        </div>
+        <button type="submit" class="btn btn-primary">Generate CSV</button>
+      </form>
+      <div class="clearfix"></div>
+
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#year" aria-controls="year" role="tab" data-toggle="tab">Number of publications per year</a></li>
+        <li role="presentation"><a href="#month" aria-controls="month" role="tab" data-toggle="tab">Number of publications per month</a></li>
+        <li role="presentation"><a href="#day" aria-controls="day" role="tab" data-toggle="tab">Number of publications per day</a></li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="year">
+          <br/>
+          <table class="table table-striped table-bordered table-responsive" id="filtered-list-3">
+            <thead>
+              <tr>
+                <th>Publication date</th>
+                <th>Number of pages</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each data.nbPublishPagesPerYears}}
+              <tr>
+                <td>{{ @key }}</td>
+                <td>{{ this.total}}</td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <a href="#" class="toggle">Show links list</a>
+                  <ul class="links">
+                    {{#each this.links}}
+                      <li><a target="_blank" href="{{ this }}">{{ this }}</a></li>
+                    {{/each}}
+                  </ul>
+                </td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="month">
+          <br/>
+          <table class="table table-striped table-bordered table-responsive" id="filtered-list-2">
+            <thead>
+              <tr>
+                <th>Publication date</th>
+                <th>Number of pages</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each data.nbPublishPagesPerMonths}}
+              <tr>
+                <td>{{ @key }}</td>
+                <td>{{ this.total}}</td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <a href="#" class="toggle">Show links list</a>
+                  <ul class="links">
+                    {{#each this.links}}
+                      <li>{{ this }}</li>
+                    {{/each}}
+                  </ul>
+                </td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+        <div role="tabpanel" class="tab-pane" id="day">
+          <br/>
+          <table class="table table-striped table-bordered table-responsive" id="filtered-list-1">
+            <thead>
+              <tr>
+                <th>Publication date</th>
+                <th>Number of pages</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each data.nbPublishPagesPerDays}}
+              <tr>
+                <td>{{ @key }}</td>
+                <td>{{ this.total}}</td>
+              </tr>
+              <tr>
+                <td colspan="2">
+                  <a href="#" class="toggle">Show links list</a>
+                  <ul class="links">
+                    {{#each this.links}}
+                      <li>{{ this }}</li>
+                    {{/each}}
+                  </ul>
+                </td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="/abejs/libs/jquery-2.1.0.min.js"></script>
+  <script type="text/javascript" src="/abejs/libs/bootstrap.min.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $(".toggle").click(function(e) {
+        e.preventDefault();
+        var a = $(event.target);
+        var div = a.parent().find('.links');
+        if (div.hasClass('show')) {
+          div.removeClass('show');
+          a.html(a.text().replace('Hide', 'Show'));
+        } else {
+          div.addClass('show');
+          a.html(a.text().replace('Show', 'Hide'));
+        }
+      });
+    });
+  </script>
+</body>
+</html>
