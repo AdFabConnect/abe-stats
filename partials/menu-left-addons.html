@@ -1,0 +1,7 @@
+{{#if @root.config.users.enable}}
+  {{#isAuthorized '/abe/plugin/abe-stats/stats*' @root.user.role.workflow}}
+    <li class="list-group-item pointer">
+      <a href="/abe/plugin/abe-stats/stats">Stats</a>
+    </li>
+    {{/isAuthorized}}
+{{/if}}
