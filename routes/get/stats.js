@@ -45,9 +45,8 @@ var route = function route(req, res, next, abe) {
 
   pages.forEach(function(page) {
     if (page.abe_meta.status !== 'publish') return;
-    if (!page.abe_meta.hasOwnProperty('publish')) return;
 
-    var date = page.abe_meta.publish.date;
+    var date = page.abe_meta.date;
     var link = page.abe_meta.link;
     var keyPerDay = date.replace(/T.*/, '');
     var keyPerMonth = date.replace(/-[0-9]+T.*/, '');
